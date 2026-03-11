@@ -84,7 +84,11 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
                 rota_final = rota_counts.idxmax()
             else:
                 rota_final = "N/A"
-                at_final = ats_permitidas[0]
+
+            at_final = ats_permitidas[0]
+
+        # 👇 ETIQUETA FORA DO ELSE
+        etiqueta_html = f"""
 
             etiqueta_html = f"""
             <style>

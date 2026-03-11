@@ -83,31 +83,50 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
 
         etiqueta_html = f"""
         <style>
+        @media print {{
+            body * {{
+                visibility: hidden;
+            }}
+            #etiqueta, #etiqueta * {{
+                visibility: visible;
+            }}
+            #etiqueta {{
+                position: absolute;
+                left: 0;
+                top: 0;
+            }}
+        }}
+        
         .etiqueta {{
-            width: 8cm; height: 4cm;
-            border: 2px solid black; padding: 10px;
-            font-family: Arial, sans-serif;
+            width: 8cm;
+            height: 4cm;
+            border: 2px solid black;
+            padding: 10px;
+            font-family: Arial;
             text-align: center;
         }}
+        
         .rota {{
             font-size: 42px;
             font-weight: bold;
             margin: 20px 0;
         }}
+        
         .linha-inferior {{
             font-size: 14px;
             font-weight: bold;
-            margin-top: 15px;
         }}
         </style>
-        <div class="etiqueta">
+        
+        <div id="etiqueta" class="etiqueta">
             <div class="rota">{rota_final}</div>
             <div class="linha-inferior">{at_final} | {codigo_pacote}</div>
         </div>
+        
+        <button onclick="window.print()">🖨️ Imprimir</button>
         """
-
         st.markdown(etiqueta_html, unsafe_allow_html=True)
-       st.markdown("""
+        st.markdown("""
             <script>
             function imprimir() {
                 window.print();

@@ -79,72 +79,58 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
                 rota_final = rota_counts.idxmax()
             else:
                 rota_final = "N/A"
-            at_final = ats_permitidas[0]
-
-        etiqueta_html = f"""
-        <style>
-        @media print {{
-            body * {{
-                visibility: hidden;
-            }}
-            #etiqueta, #etiqueta * {{
-                visibility: visible;
-            }}
-            #etiqueta {{
-                position: absolute;
-                left: 0;
-                top: 0;
-            }}
-        }}
-        
-        .etiqueta {{
-            width: 8cm;
-            height: 4cm;
-            border: 2px solid black;
-            padding: 10px;
-            font-family: Arial;
-            text-align: center;
-        }}
-        
-        .rota {{
-            font-size: 42px;
-            font-weight: bold;
-            margin: 20px 0;
-        }}
-        
-        .linha-inferior {{
-            font-size: 14px;
-            font-weight: bold;
-        }}
-        </style>
-        
-        <div id="etiqueta" class="etiqueta">
-            <div class="rota">{rota_final}</div>
-            <div class="linha-inferior">{at_final} | {codigo_pacote}</div>
-        </div>
-        
-        <button onclick="window.print()">🖨️ Imprimir</button>
-        """
-        st.markdown(etiqueta_html, unsafe_allow_html=True)
-        st.markdown("""
-            <script>
-            function imprimir() {
-                window.print();
-            }
-            </script>
+                at_final = ats_permitidas[0]
             
-            <button onclick="imprimir()" style="
-            padding:10px 20px;
-            font-size:16px;
-            background-color:#4CAF50;
-            color:white;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;">
-            🖨️ Imprimir
-            </button>
-            """, unsafe_allow_html=True)
-
-        etiqueta_txt = f"""{rota_final}
+            etiqueta_html = f"""
+            <style>
+            @media print {{
+                body * {{
+                    visibility: hidden;
+                }}
+                #etiqueta, #etiqueta * {{
+                    visibility: visible;
+                }}
+                #etiqueta {{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }}
+            }}
+            
+            .etiqueta {{
+                width: 8cm;
+                height: 4cm;
+                border: 2px solid black;
+                padding: 10px;
+                font-family: Arial;
+                text-align: center;
+            }}
+            
+            .rota {{
+                font-size: 42px;
+                font-weight: bold;
+                margin: 20px 0;
+            }}
+            
+            .linha-inferior {{
+                font-size: 14px;
+                font-weight: bold;
+            }}
+            </style>
+            
+            <div id="etiqueta" class="etiqueta">
+                <div class="rota">{rota_final}</div>
+                <div class="linha-inferior">{at_final} | {codigo_pacote}</div>
+            </div>
+            """
+            
+            st.markdown(etiqueta_html, unsafe_allow_html=True)
+            
+            if st.button("🖨️ Imprimir etiqueta"):
+                st.markdown(
+                    "<script>window.print()</script>",
+                    unsafe_allow_html=True
+                )
+    etiqueta_txt = f"""{rota_final}
 {at_final} | {codigo_pacote}"""
         st.download_button("⬇️ Baixar etiqueta", etiqueta_txt, file_name=f"etiqueta_{codigo_pacote}.txt")

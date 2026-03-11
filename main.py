@@ -132,5 +132,5 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
                     unsafe_allow_html=True
                 )
     etiqueta_txt = f"""{rota_final}
-{at_final} | {codigo_pacote}"""
-        st.download_button("⬇️ Baixar etiqueta", etiqueta_txt, file_name=f"etiqueta_{codigo_pacote}.txt")
+    {at_final} | {codigo_pacote}"""
+    st.download_button("⬇️ Baixar etiqueta", etiqueta_txt, file_name=f"etiqueta_{codigo_pacote}.txt")

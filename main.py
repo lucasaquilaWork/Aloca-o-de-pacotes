@@ -38,6 +38,11 @@ st.download_button(
 codigo_pacote = st.text_input("Bipe ou digite o código do pacote (SPX TN)", key="pacote")
 
 if arquivo_romaneio and arquivo_ats and codigo_pacote:
+
+    # 🔧 Correção do erro
+    at_final = "N/A"
+    rota_final = "N/A"
+
     # 🔑 Lê arquivos já forçando tudo como string
     df_romaneio = pd.read_csv(arquivo_romaneio, dtype=str)
     df_romaneio.columns = df_romaneio.columns.str.strip()
@@ -80,7 +85,7 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
             else:
                 rota_final = "N/A"
                 at_final = ats_permitidas[0]
-            
+
             etiqueta_html = f"""
             <style>
             @media print {{
@@ -96,7 +101,7 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
                     top: 0;
                 }}
             }}
-            
+
             .etiqueta {{
                 width: 8cm;
                 height: 4cm;
@@ -105,32 +110,38 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
                 font-family: Arial;
                 text-align: center;
             }}
-            
+
             .rota {{
                 font-size: 42px;
                 font-weight: bold;
                 margin: 20px 0;
             }}
-            
+
             .linha-inferior {{
                 font-size: 14px;
                 font-weight: bold;
             }}
             </style>
-            
+
             <div id="etiqueta" class="etiqueta">
                 <div class="rota">{rota_final}</div>
                 <div class="linha-inferior">{at_final} | {codigo_pacote}</div>
             </div>
             """
-            
+
             st.markdown(etiqueta_html, unsafe_allow_html=True)
-            
+
             if st.button("🖨️ Imprimir etiqueta"):
                 st.markdown(
                     "<script>window.print()</script>",
                     unsafe_allow_html=True
                 )
+
     etiqueta_txt = f"""{rota_final}
-    {at_final} | {codigo_pacote}"""
-    st.download_button("⬇️ Baixar etiqueta", etiqueta_txt, file_name=f"etiqueta_{codigo_pacote}.txt")
+{at_final} | {codigo_pacote}"""
+
+    st.download_button(
+        "⬇️ Baixar etiqueta",
+        etiqueta_txt,
+        file_name=f"etiqueta_{codigo_pacote}.txt"
+    )

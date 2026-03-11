@@ -166,7 +166,7 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
             .rota {{
                 font-size:32px;
                 font-weight:bold;
-                margin:10px 0;
+                margin:40px 0;
             }}
 
             .linha-inferior {{

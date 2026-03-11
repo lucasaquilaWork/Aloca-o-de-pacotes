@@ -164,13 +164,13 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
             }}
 
             .rota {{
-                font-size:42px;
+                font-size:32px;
                 font-weight:bold;
-                margin:20px 0;
+                margin:10px 0;
             }}
 
             .linha-inferior {{
-                font-size:14px;
+                font-size:8px;
                 font-weight:bold;
             }}
             </style>

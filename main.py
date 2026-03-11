@@ -1,5 +1,27 @@
 import streamlit as st
 import pandas as pd
+st.markdown("""
+<style>
+
+/* Esconde menu superior */
+#MainMenu {visibility: hidden;}
+
+/* Esconde rodapé */
+footer {visibility: hidden;}
+
+/* Esconde header */
+header {visibility: hidden;}
+
+/* Remove padding da página */
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.title("📦 Etiquetas com Scanner e ATS válidas")
 

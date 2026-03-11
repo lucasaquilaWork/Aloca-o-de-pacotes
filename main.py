@@ -107,7 +107,24 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
         """
 
         st.markdown(etiqueta_html, unsafe_allow_html=True)
-        st.markdown("<button onclick='window.print()'>🖨️ Imprimir</button>", unsafe_allow_html=True)
+       st.markdown("""
+            <script>
+            function imprimir() {
+                window.print();
+            }
+            </script>
+            
+            <button onclick="imprimir()" style="
+            padding:10px 20px;
+            font-size:16px;
+            background-color:#4CAF50;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;">
+            🖨️ Imprimir
+            </button>
+            """, unsafe_allow_html=True)
 
         etiqueta_txt = f"""{rota_final}
 {at_final} | {codigo_pacote}"""

@@ -77,8 +77,7 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
 
     if cabeca_cep:
 
-        planejamento_cep = df_ats[df_ats['cep'] == cabeca_cep]
-
+        planejamento_cep = df_ats[df_ats['cep'].str[:5] == cabeca_cep]
         if not planejamento_cep.empty:
             at_final = planejamento_cep['AT/TO'].values[0]
             rota_final = planejamento_cep['Gaiola'].values[0]

@@ -131,11 +131,53 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
 
             st.markdown(etiqueta_html, unsafe_allow_html=True)
 
-            if st.button("🖨️ Imprimir etiqueta"):
-                st.markdown(
-                    "<script>window.print()</script>",
-                    unsafe_allow_html=True
-                )
+        if st.button("🖨️ Imprimir etiqueta"):
+
+            html_impressao = f"""
+            <html>
+            <head>
+            <style>
+            body {{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
+                font-family:Arial;
+            }}
+
+            .etiqueta {{
+                width:8cm;
+                height:4cm;
+                border:2px solid black;
+                padding:10px;
+                text-align:center;
+            }}
+
+            .rota {{
+                font-size:42px;
+                font-weight:bold;
+                margin:20px 0;
+            }}
+
+            .linha-inferior {{
+                font-size:14px;
+                font-weight:bold;
+            }}
+            </style>
+            </head>
+
+            <body onload="window.print()">
+
+            <div class="etiqueta">
+                <div class="rota">{rota_final}</div>
+                <div class="linha-inferior">{at_final} | {codigo_pacote}</div>
+            </div>
+
+            </body>
+            </html>
+            """
+
+            st.components.v1.html(html_impressao, height=0)
 
     etiqueta_txt = f"""{rota_final}
 {at_final} | {codigo_pacote}"""

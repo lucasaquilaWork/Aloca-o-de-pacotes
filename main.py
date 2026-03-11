@@ -54,7 +54,8 @@ if arquivo_romaneio and arquivo_ats and codigo_pacote:
 
     df_romaneio = df_romaneio.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     df_ats = df_ats.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-
+    df_ats['cep'] = df_ats['cep'].str.replace('-', '', regex=False)
+    df_ats['cep'] = df_ats['cep'].str[:5]
     ats_permitidas = df_ats['AT/TO'].unique().tolist()
 
     # Busca pacote
